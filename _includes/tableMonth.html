@@ -1,0 +1,63 @@
+<script>
+function cal(){
+        var initF = document.getElementById('initialFundsM').value;
+        var rate = document.getElementById('interestRateM').value;
+        var additional = document.getElementById('additionalInvestmentM').value;
+        var period = document.getElementById('investmentPeriodM').value;
+
+        initF.replace(/\s/gi, "");
+        rate.replace(/\s/gi, "");
+        additional.replace(/\s/gi, "");
+        period.replace(/\s/gi, "");
+
+        if(!initF || !rate || !additional || !period){
+                alert("입력 형식이 맞는지 확인하세요.");
+                return;
+        }
+
+        initF = Math.floor(Number(initF));
+        rate = Number(rate);
+        additional = Math.floor(Number(additional));
+        period = Math.floor(Number(period));
+
+
+        if(isNaN(initF) || isNaN(rate) || isNaN(additional) || isNaN(period)){
+                alert("입력 형식이 맞는지 확인하세요.");
+                return;
+        }
+
+	if(period > 400) period = 400;
+	if(initF < 0) initF = initF*(-1);
+	if(additional < 0) additional = additional*(-1);
+	if(period < 0) period = period*(-1);
+        var table = document.getElementById('resultTableM');
+        var sum = initF;
+        if(table.rows.length != 1) deleteFunction(table);
+
+        insertFunction(initF,rate,additional,period,table,sum);
+}
+
+function insertFunction(initF,rate,additional,period,table,sum){
+        for(var i = 0;i <= period;i++){
+                var newRow = table.insertRow();
+                var newCell1 = newRow.insertCell(0);
+                var newCell2 = newRow.insertCell(1);
+                var newCell3 = newRow.insertCell(2);
+                var newCell4 = newRow.insertCell(3);
+                
+                newCell1.innerText = i;
+		newCell2.innerText = sum.toLocaleString('en').split('.')[0];
+                newCell3.innerText = ((sum)*(1+rate/100)).toLocaleString('en').split('.')[0];
+                newCell4.innerText = ((sum*(1+rate/100))-(initF+i*additional)).toLocaleString('en').split('.')[0];
+                
+                sum = (sum*(1+rate/100))+additional;
+        }
+}
+
+function deleteFunction(table){
+        while(table.rows.length >= 2){
+                table.deleteRow(table.rows.length-1);
+        }
+}
+
+</script>
