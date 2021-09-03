@@ -17,7 +17,7 @@ markdown: kramdown
 title:       "복리 계산기"
 keywords:    "복리 계산, 년 복리 계산, 월 복리 계산, 주 복리 계산, 일 복리 계산, 주식 복리 계산"
 description: "간단하게 년,월,주,일 복리 계산을 해줍니다."
-source_link: "https://atomic0x90.github.io"
+source_link: "https://atomic0x90.github.io/"
 favicon:     "img/favicon.ico"
 touch_icon:  "img/money.png"
 google_analytics_key: UA-141573766-1 ## put YOUR key here to enable tracking! (blank to disable)
